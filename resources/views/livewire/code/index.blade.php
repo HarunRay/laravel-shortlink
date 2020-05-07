@@ -1,4 +1,10 @@
 <div>
+    @if (session()->has('message'))
+        <div class="alert alert-success" role="alert">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <livewire:code.create>
 
         <table class="table table-striped">
@@ -11,11 +17,11 @@
             </thead>
             <tbody>
             @foreach($links as $link)
-                    <tr>
-                        {{--    <th scope="row">{{$link->id}}</th>--}}
-                        <td><a href="{{url($link->code)}}" target="_blank">{{url($link->code)}}</a></td>
-                        <td><a href="{{$link->link}}" target="_blank">{{$link->link}}</a></td>
-                    </tr>
+                <tr>
+                    {{--    <th scope="row">{{$link->id}}</th>--}}
+                    <td><a href="{{url($link->code)}}" target="_blank">{{url($link->code)}}</a></td>
+                    <td><a href="{{$link->link}}" target="_blank">{{$link->link}}</a></td>
+                </tr>
 
             @endforeach
             </tbody>

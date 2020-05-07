@@ -20,4 +20,5 @@ Route::get( '/', function () {
 Auth::routes( [ 'register' => false ] );
 
 Route::get( '/dashboard', 'HomeController@index' )->name( 'dashboard' );
+Route::get( '/api-access', 'ApiAccessController@index' )->name( 'access.api' );
 Route::get( '/{code}', 'CodeLinkController@index' )->name( 'code.link' );
