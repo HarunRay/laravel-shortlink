@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get( '/', function () {
     return view( 'welcome' );
-} );
+} )->name( 'home' );
 
 Auth::routes( [ 'register' => false ] );
 
 Route::get( '/dashboard', 'HomeController@index' )->name( 'dashboard' );
+Route::get( '/{code}', 'CodeLinkController@index' )->name( 'code.link' );
