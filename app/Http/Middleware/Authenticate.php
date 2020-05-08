@@ -18,20 +18,10 @@ class Authenticate extends Middleware
      */
     protected function redirectTo( $request )
     {
-        if ( Str::startsWith( $request->route()->uri, 'api' ) && in_array( 'auth:sanctum', $request->route()->middleware() )) {
+        if ( Str::startsWith( $request->route()->uri, 'api' ) && in_array( 'auth:sanctum', $request->route()->middleware() ) ) {
             return response()->json( [ 'error' => 'Unauthenticated.' ], 401 );
         } else if ( ! $request->expectsJson() ) {
             return route( 'login' );
         }
-    }
-
-    protected function unauthenticated( $request, array $guards )
-    {
-        if ( $request->expectsJson() ) {
-            return response()->json( [ 'error' => 'Unauthenticated.' ], 401 );
-        }
-        throw new AuthenticationException(
-            'Unauthenticated.', $guards, $this->redirectTo( $request )
-        );
     }
 }

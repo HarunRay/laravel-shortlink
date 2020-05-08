@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group( [ 'middleware' => 'auth:sanctum' ], function () {
     Route::get( '/user', function ( Request $request ) {
-        return in_array( 'auth:sanctum', $request->route()->middleware() );
-//        return $request->user();
+//        return in_array( 'auth:sanctum', $request->route()->middleware() );
+        return $request->user();
     } );
+
+    Route::post( '/shortlink', 'Api\ShortLinkController@store' );
 } );
