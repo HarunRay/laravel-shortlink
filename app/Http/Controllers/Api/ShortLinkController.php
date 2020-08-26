@@ -31,14 +31,17 @@ class ShortLinkController extends Controller
     public function store( Request $request )
     {
         $validate = Validator::make( $request->all(), [
-            'link' => 'required|url'
+            'link'    => 'required|url',
+            'private' => 'boolean',
         ] );
 
         if ( $validate->fails() ) {
             return response()->json( [ 'errors' => $validate->errors() ], 422 );
         }
 
-        $link = ( new CodeLink() )->generateLink( $request->link, $request->user()->id );
+//        return $request->all();
+
+        $link = ( new CodeLink() )->generateLink( $request->link, $request->user()->id, $request->boolean( 'private' ) );
         if ( $link ) {
             $shortlink_full = route( 'code.link', [ 'code' => $link->code ] );
             $shortlink      = Str::replaceFirst( 'https://', '', $shortlink_full );

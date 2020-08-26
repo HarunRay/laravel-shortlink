@@ -18,6 +18,19 @@
             @enderror
         </div>
 
+        <div class="form-group">
+            <label for="private">
+                <input
+                    id="private"
+                    name="private"
+                    type="checkbox"
+                    value="1"
+                    class="form-control @error('private') is-invalid @enderror"
+                    wire:model="private"
+                > Private Link
+            </label>
+        </div>
+
         <button type="submit" class="btn btn-primary">
             Generate
         </button>

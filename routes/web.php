@@ -13,12 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get( '/', function () {
-    return view( 'welcome' );
-} )->name( 'home' );
+Route::get( '/', 'HomeController@home' )->name( 'home' );
 
 Auth::routes( [ 'register' => false ] );
 
 Route::get( '/dashboard', 'HomeController@index' )->name( 'dashboard' );
 Route::get( '/api-access', 'ApiAccessController@index' )->name( 'access.api' );
-Route::get( '/{code}', 'CodeLinkController@index' )->name( 'code.link' );
+Route::get( '/{code}/{token?}', 'CodeLinkController@index' )->name( 'code.link' );
